@@ -1,0 +1,6 @@
+[package]
+name = "rustib"
+version = "0.1.0"
+authors = ["Robin Skahjem-Eriksen <robindse@gmail.com>"]
+
+[dependencies]
