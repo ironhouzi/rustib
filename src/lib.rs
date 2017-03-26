@@ -26,11 +26,21 @@ fn sanskrit_quickcheck(string: &str) -> bool {
     !string.contains(table::W_ROOTLETTERS[22]) && vowel_count > 1
 }
 
-fn letter_partition<'a>(string: &'a str, alphabet: [&'static str]) -> Vec<&'a str> {
-    let result: Vec<&str> = Vec::new();
+// fn letter_partition<'a>(string: &'a str, alphabet: &[&'static str]) -> &'a [&'a str] {
+fn letter_partition<'a>(string: &'a str, alphabet: &[&'static str]) -> Vec<&'a str> {
+    let mut result: Vec<&str> = Vec::new();
     let mut progress = 0;
 
     while progress < string.len() {
+        for c in alphabet {
+            if !&string[progress..string.len()].starts_with(c) {
+                continue;
+            }
+
+            result.push(c);
+            progress += c.len();
+            break;
+        }
     }
 
     result
@@ -40,10 +50,11 @@ fn letter_partition<'a>(string: &'a str, alphabet: [&'static str]) -> Vec<&'a st
 mod tests {
     use super::sanskrit_quickcheck;
     use super::letter_partition;
+    use table;
 
     #[test]
     fn test_letter_partition() {
-        assert!(letter_partition("sarva"));
+        assert!(letter_partition("sangs", &table::W_SORTED_ALPHABET) == vec!["s", "a", "ng", "s"]);
     }
 
     #[test]
