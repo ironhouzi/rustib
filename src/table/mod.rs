@@ -1,27 +1,47 @@
 // Wylie/latin consonants
-pub static W_ROOTLETTERS: [&'static str; 30] =
-    ["k", "kh", "g", "ng", "c", "ch", "j", "ny", "t", "th", "d", "n", "p", "ph", "b", "m", "ts",
-     "tsh", "dz", "w", "zh", "z", "'", "y", "r", "l", "sh", "s", "h", "a"];
+pub static W_ROOTLETTERS: [&'static str; 30] = [
+    "k", "kh", "g", "ng",
+    "c", "ch", "j", "ny",
+    "t", "th", "d", "n",
+    "p", "ph", "b", "m",
+    "ts", "tsh", "dz", "w",
+    "zh", "z", "'", "y",
+    "r", "l", "sh", "s",
+    "h", "a"
+];
 
-pub static W_SORTED_ALPHABET: [&'static str; 34] =
-    ["tsh", "kh", "ng", "ch", "ny", "th", "ph", "ts", "dz", "zh", "sh",
-    "k", "g", "c", "j", "t", "d", "n", "p", "b", "m", "w", "z", "'", "y",
-    "r", "l", "s", "h", "a", "i", "u", "e", "o"];
+pub static W_SORTED_ALPHABET: [&'static str; 34] = [
+    "tsh", "kh", "ng", "ch",
+    "ny", "th", "ph", "ts",
+    "dz", "zh", "sh", "k",
+    "g", "c", "j", "t",
+    "d", "n", "p", "b",
+    "m", "w", "z", "'",
+    "y", "r", "l", "s",
+    "h", "a", "i", "u",
+    "e", "o"
+];
 
 // Tibetan Unicode consonants
-pub static U_ROOTLETTERS: [&'static str; 30] =
-    ["\u{0f40}", "\u{0f41}", "\u{0f42}", "\u{0f44}", "\u{0f45}", "\u{0f46}", "\u{0f47}",
-     "\u{0f49}", "\u{0f4f}", "\u{0f50}", "\u{0f51}", "\u{0f53}", "\u{0f54}", "\u{0f55}",
-     "\u{0f56}", "\u{0f58}", "\u{0f59}", "\u{0f5a}", "\u{0f5b}", "\u{0f5d}", "\u{0f5e}",
-     "\u{0f5f}", "\u{0f60}", "\u{0f61}", "\u{0f62}", "\u{0f63}", "\u{0f64}", "\u{0f66}",
-     "\u{0f67}", "\u{0f68}"];
+pub static U_ROOTLETTERS: [&'static str; 30] = [
+    "\u{0f40}", "\u{0f41}", "\u{0f42}", "\u{0f44}",
+    "\u{0f45}", "\u{0f46}", "\u{0f47}", "\u{0f49}",
+    "\u{0f4f}", "\u{0f50}", "\u{0f51}", "\u{0f53}",
+    "\u{0f54}", "\u{0f55}", "\u{0f56}", "\u{0f58}",
+    "\u{0f59}", "\u{0f5a}", "\u{0f5b}", "\u{0f5d}",
+    "\u{0f5e}", "\u{0f5f}", "\u{0f60}", "\u{0f61}",
+    "\u{0f62}", "\u{0f63}", "\u{0f64}", "\u{0f66}",
+    "\u{0f67}", "\u{0f68}"
+];
 
 // Latin consonants for transliteration of sanskrit (IAST)
 // TODO: replace char litterals with codepoints.
-pub static SW_ROOTLETTERS: [&'static str; 34] = ["k", "kh", "g", "gh", "ṅ", "c", "ch", "j", "jh",
-                                                "ñ", "ṭ", "ṭh", "ḍ", "ḍh", "ṇ", "t",
-                                                "th", "d", "dh", "n", "p", "ph", "b", "bh", "m",
-                                                "y", "r", "l", "v", "ś", "ṣ", "s", "h", "kṣ"];
+pub static SW_ROOTLETTERS: [&'static str; 34] = [
+    "k", "kh", "g", "gh", "ṅ", "c", "ch", "j", "jh",
+    "ñ", "ṭ", "ṭh", "ḍ", "ḍh", "ṇ", "t",
+    "th", "d", "dh", "n", "p", "ph", "b", "bh", "m",
+    "y", "r", "l", "v", "ś", "ṣ", "s", "h", "kṣ"
+];
 
 pub static SW_SORTED_ALPHABET: [&'static str; 50] = [
     "kh", "gh", "ch", "jh", "ṭh", "ḍh", "th", "dh", "ph",
