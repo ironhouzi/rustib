@@ -9,10 +9,10 @@ mod tests {
 
     #[test]
     fn test_letter_partition() {
-        assert!(letter_partition("sangs", &table::W_SORTED_ALPHABET) ==
-                vec!["s", "a", "ng", "s"]);
-        assert!(letter_partition("'tshags", &table::W_SORTED_ALPHABET) ==
-                vec!["'", "tsh", "a", "g", "s"]);
+        assert_eq!(letter_partition("sangs", &table::W_SORTED_ALPHABET),
+                   vec!["s", "a", "ng", "s"]);
+        assert_eq!(letter_partition("'tshags", &table::W_SORTED_ALPHABET),
+                   vec!["'", "tsh", "a", "g", "s"]);
     }
 
     #[test]
@@ -26,13 +26,21 @@ mod tests {
 
     #[test]
     fn test_vowel_indexer() {
-        assert!(vowel_indices("sarva".to_string(), &table::W_SORTED_ALPHABET) ==
-                vec![1, 4]);
+        assert_eq!(vowel_indices("sarva".to_string(), &table::TIBETAN_VOWELS),
+                   vec![1, 4]);
     }
 }
 
-// fn letter_partition<'a>(string: &'a str, alphabet: &[&'static str]) -> &'a [&'a str] {
-// fn letter_partition<'a>(string: &'a str, alphabet: &[&'static str]) -> Vec<&'a str> {
+fn vowel_indices(string: String, vowels: &[&'static str]) -> Vec<usize> {
+    let indices: Vec<usize> = string.chars()
+        .enumerate()
+        .filter(|&(i, c)| vowels.contains(&c))
+        .map(|(i, c)| i)
+        .collect();
+
+    indices
+}
+
 fn letter_partition(string: &str, alphabet: &[&'static str]) -> Vec<String> {
     let mut result: Vec<String> = Vec::new();
     let mut progress = 0;
@@ -76,16 +84,4 @@ fn maybe_sanskrit(string: String) -> bool {
 
     // achung
     !string.contains(table::W_ROOTLETTERS[22]) && vowel_count > 1
-}
-
-fn vowel_indices(string: String, vowels: &[&'static str]) -> Vec<usize> {
-    let mut indices: Vec<usize> = Vec::new();
-
-    for v in vowels {
-        if let Some(i) = string.find(v) {
-            indices.push(i);
-        };
-    }
-
-    indices
 }
