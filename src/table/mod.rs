@@ -1,5 +1,5 @@
 // Wylie/latin consonants
-pub static W_ROOTLETTERS: [&'static str; 30] = [
+pub static W_CONSONANTS: [&'static str; 29] = [
     "k", "kh", "g", "ng",
     "c", "ch", "j", "ny",
     "t", "th", "d", "n",
@@ -7,9 +7,11 @@ pub static W_ROOTLETTERS: [&'static str; 30] = [
     "ts", "tsh", "dz", "w",
     "zh", "z", "'", "y",
     "r", "l", "sh", "s",
-    "h", "a"
+    // "h", "a"
+    "h"
 ];
 
+// Sorted by string length, used for partitioning a syllable into letters
 pub static W_SORTED_ALPHABET: [&'static str; 34] = [
     "tsh", "kh", "ng", "ch",
     "ny", "th", "ph", "ts",
@@ -62,9 +64,11 @@ pub static SU_ROOTLETTERS: [&'static str; 34] = [
 ];
 
 // Wylie/latin vowels
-pub static W_VOWELS: [&'static str; 4] = ["i", "u", "e", "o"];
+// pub static W_VOWELS: [&'static str; 4] = ["i", "u", "e", "o"];
+pub static W_VOWELS: [char; 4] = ['i', 'u', 'e', 'o'];
 
-pub static TIBETAN_VOWELS: [&'static str; 5] = ["i", "u", "e", "o", "a"];
+pub static TIBETAN_VOWELSS: [&'static str; 5] = ["i", "u", "e", "o", "a"];
+pub static TIBETAN_VOWELS: [char; 5] = ['i', 'u', 'e', 'o', 'a'];
 
 // Tibetan Unicode vowels
 pub static U_VOWELS: [&'static str; 4] = ["\u{0f72}", "\u{0f74}", "\u{0f7a}", "\u{0f7c}"];
@@ -77,22 +81,12 @@ pub static SW_VOWELS: [&'static str; 16] = [
 ];
 
 // Tibetan Unicode vowels for Tibetan transliteration of Sanskrit
-pub static SU_VOWELS: [&'static str; 16] = ["\u{0f68}",
-                                           "\u{0f71}",
-                                           "\u{0f72}",
-                                           "\u{0f73}",
-                                           "\u{0f74}",
-                                           "\u{0f75}",
-                                           "\u{0f7a}",
-                                           "\u{0f7b}",
-                                           "\u{0f7c}",
-                                           "\u{0f7d}",
-                                           "\u{0f76}",
-                                           "\u{0f77}",
-                                           "\u{0f78}",
-                                           "\u{0f79}",
-                                           "\u{0f7e}",
-                                           "\u{0f7f}"];
+pub static SU_VOWELS: [&'static str; 16] = [
+    "\u{0f68}", "\u{0f71}", "\u{0f72}", "\u{0f73}",
+    "\u{0f74}", "\u{0f75}", "\u{0f7a}", "\u{0f7b}",
+    "\u{0f7c}", "\u{0f7d}", "\u{0f76}", "\u{0f77}",
+    "\u{0f78}", "\u{0f79}", "\u{0f7e}", "\u{0f7f}"
+];
 
 // TODO: replace char literals with codepoints.
 pub static U_OM: &'static str = "oṃ";
@@ -109,3 +103,31 @@ pub static S_DOUBLE_CONSONANTS: [&'static str; 3] = ["gg", "dd", "bb"];
 pub static S_BASIC_RULES: [&'static str; 25] =
     ["phyw", "ghr", "hra", "hwa", "tsy", "trw", "rdh", "sye", "n.y", "gh", "dh", "cy", "jh", "nn",
      "mm", "ww", "yy", "rr", "hy", "ty", "tv", "tw", "tz", "bh", "ss"];
+pub static SUPERJOINED: [&'static str; 3] = ["r", "l", "s"];
+pub static SUPERJOINABLE: [&'static str; 15] = ["k", "g", "ng", "c", "j", "ny", "t", "d", "n", "p", "b", "h", "m", "ts", "dz"];
+pub static SUBJOINED: [&'static str; 4] = ["m", "y", "r", "l"];
+pub static SUBJOINABLE: [&'static str; 21] = ["k", "kh", "g", "p", "ph", "b", "m", "h", "t", "th", "d", "n", "s", "r", "z", "c", "ts", "tsh", "zh", "l", "sh"];
+
+// Valid characters for wylie prefixes
+// ['g', 'd', 'b', 'm', '\'']
+pub static PREFIXES: [&'static str; 6] = ["g.", "g", "d", "b", "m", "'"];
+
+// // Wylie characters that take the 'ra' character as its superjoined letter.
+// //  ['k', 'g', 'ng', 'j', 'ny', 't', 'd', 'n', 'b',  'm', 'ts', 'dz']
+// pub static RAGO_INDICES: [u8; 12] = [0,  2,  3, 6,  7,  8, 10, 11, 14, 15, 16, 18];
+// pub static VALID_RAGO: [&'static str; 12] = ["k", "g", "ng", "j", "ny", "t", "d", "n", "b",  "m", "ts", "dz"];
+
+// // Wylie characters that take the 'la' character as its superjoined letter.
+// //  ['k', 'g', 'ng', 'c', 'j', 't', 'd', 'p',  'b', 'h']
+// pub static LAGO_INDICES: [u8; 10] = [0,  2,  3, 4,  6,  8, 10, 12, 14, 28];
+// pub static VALID_LAGO: [&'static str; 10] = ["k", "g", "ng", "c", "j", "t", "d", "p",  "b", "h"];
+
+// // Wylie characters that take the 'sa' character as its superjoined letter.
+// //  ['k', 'g', 'ng', 'ny', 't', 'd', 'n', 'p',  'b',  'm', 'ts']
+// pub static SAGO_INDICES: [u8; 11] = [0,  2,  3, 7,  8,  10, 11, 12, 14, 15, 16];
+// pub static VALID_SAGO: [&'static str; 11] = ["k", "g", "ng", "ny", "t", "d", "n", "p",  "b",  "m", "ts"];
+
+// // Wylie characters that take the 'ya' character as its subjoined letter.
+// //  ['k', 'kh', 'g', 'p', 'ph', 'b', 'm', 'h']
+// pub static YATA_INDICES: [u8; 8] = [0,  1,  2, 12, 13, 14, 15, 28];
+// pub static VALID_YATA: [&'static str; 8] = ["k", "kh", "g", "p", "ph", "b", "m", "h"];
